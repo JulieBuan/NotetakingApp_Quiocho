@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "ph.edu.comteq.roomdatabase"
-        minSdk = 33
+        minSdk = 30
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+   
+    implementation("androidx.navigation:navigation-compose:2.9.5")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")

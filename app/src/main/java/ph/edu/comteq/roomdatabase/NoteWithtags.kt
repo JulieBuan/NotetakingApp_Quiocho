@@ -5,18 +5,19 @@ import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 
-data class NoteWithtags(
+data class NoteWithTags(
     @Embedded
     val note: Note,
 
     @Relation(
-        parentColumn = "id",   //note's ID
-        entityColumn = "id",   // tag's ID
+        parentColumn = "id", //Note's id
+        entityColumn = "id", //Tag's id
         associateBy = Junction(
             value = NoteTagCrossRef::class,
             parentColumn = "note_id",
             entityColumn = "tag_id"
         )
-     )
-    val tags: List<Tag>
+    )
+
+    val tags:List<Tag>
 )

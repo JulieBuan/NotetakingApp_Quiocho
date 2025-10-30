@@ -11,6 +11,7 @@ data class Tag(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "name")
-    val  name: String,
+    val name: String,
     val color: String = "#6200EE"
 )
+
