@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNote(note: Note): Long
 
     @Update
@@ -24,8 +24,10 @@ interface NoteDao {
     @Upsert
     suspend fun upsertNote(note: Note)
 
+//    @Query("SELECT * FROM notes WHERE id = :id")
+//    fun getNoteById(id: Int): Note?
     @Query("SELECT * FROM notes WHERE id = :id")
-    fun getNoteById(id: Int): Note?
+    fun getNoteById(id: Int): Flow<Note?>
 
     @Query("SELECT * FROM notes ORDER BY id DESC")
     fun getAllNotes(): Flow<List<Note>>
@@ -67,6 +69,8 @@ interface NoteDao {
     @Transaction  // Important: Ensures all data loads together
     @Query("SELECT * FROM notes WHERE id = :noteId")
     fun getNoteWithTags(noteId: Int): NoteWithTags?
+
+
 
     // Get all notes WITH their tags
     @Transaction
